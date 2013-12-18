@@ -41,9 +41,8 @@ class ControllerBase
     file_contents =
       File.read("views/#{controller_name}/#{template_name}.html.erb")
 
-    template = ERB.new("<%= #{file_contents} %>").result(binding)
-    template_contents = template.eval
-    render_content(template_contents, #TYPE)
+    template = ERB.new(file_contents).result(binding)
+    render_content(template, 'text/text')
   end
 
   # method exposing a `Session` object
